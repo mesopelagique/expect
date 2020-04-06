@@ -260,6 +260,33 @@ Function beEmpty
 			
 	End case 
 	
+Function haveLength
+	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
+	$0:=New object:C1471()
+	Case of 
+		: (Value type:C1509($1)=Is text:K8:3)
+			$0.pass:=Length:C16($1)=This:C1470.value
+			If (Not:C34($0.pass))
+				$0.message:="Expecting '"+This:C1470.stringify($1)+"' to have length equal to "+String:C10(This:C1470.value)
+			Else 
+				$0.message:="Expecting '"+This:C1470.stringify($1)+"'to not have length equal to "+String:C10(This:C1470.value)
+			End if 
+		: (Value type:C1509($1)=Is collection:K8:32)
+			$0.pass:=$1.length=This:C1470.value
+			If (Not:C34($0.pass))
+				$0.message:="Expecting '"+This:C1470.stringify($1)+"' to have length equal to "+String:C10(This:C1470.value)
+			Else 
+				$0.message:="Expecting '"+This:C1470.stringify($1)+"'to not have length equal to "+String:C10(This:C1470.value)
+			End if 
+			
+		Else 
+			
+			$0.pass:=False:C215
+			$0.message:="Unexpecting input type to check emptiness"
+			
+	End case 
+	
 Function beLessThan
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)
@@ -302,6 +329,18 @@ Function beGreaterThanOrEqualTo
 		$0.message:="Expecting '"+This:C1470.stringify(This:C1470.value)+"' to be greater or equal than '"+This:C1470.stringify($1)+"'"
 	Else 
 		$0.message:="Expecting '"+This:C1470.stringify(This:C1470.value)+"' to not to be greater or equal than '"+This:C1470.stringify($1)+"'"
+	End if 
+	
+Function beAnInstanceOf
+	C_OBJECT:C1216($0)
+	C_OBJECT:C1216($1)
+	
+	$0:=New object:C1471()
+	$0.pass:=OB Instance of:C1731($1;This:C1470.value)
+	If (Not:C34($0.pass))
+		$0.message:="Expecting '"+This:C1470.stringify($1)+":"+This:C1470.stringify(OB Class:C1730($1))+"' to be instance of '"+This:C1470.stringify(This:C1470.value)+"'"
+	Else 
+		$0.message:="Expecting '"+This:C1470.stringify($1)+":"+This:C1470.stringify(OB Class:C1730($1))+"' to be instance of '"+This:C1470.stringify(This:C1470.value)+"'"
 	End if 
 	
 Function execute

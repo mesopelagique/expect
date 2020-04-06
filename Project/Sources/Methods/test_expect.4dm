@@ -69,9 +69,17 @@ _.expect(3).to(_.beGreaterThanOrEqualTo(2))
 _.expect(3).to(_.beGreaterThanOrEqualTo(3))
 _.expect(3).notTo(_.beGreaterThanOrEqualTo(4))
 
+_.expect(cs:C1710.Predicate.new()).to(_.beAnInstanceOf(cs:C1710.Predicate))
+_.expect(cs:C1710.Predicate.new()).toNot(_.beAnInstanceOf(cs:C1710.Expect))
+_.expect(New object:C1471).toNot(_.beAnInstanceOf(cs:C1710.Expect))
+
+_.expect("").to(_.haveLength(0))
+_.expect("test").to(_.haveLength(4))
+_.expect(New collection:C1472()).to(_.haveLength(0))
+_.expect(New collection:C1472("test";"test")).to(_.haveLength(2))
+
   // TODO
   //_ .expect(1.2).to(_ .beCloseTo(1.1;0.1))// expected, within: delta
-  //_ .expect(structObject).to(_ .beAnInstanceOf(cs.SomeClass))
+
   //_ .expect(turtles).to(containElementSatisfying(Formula)
-  //_ .expect(actual).to(haveCount(expected))
   //_ .expect([1, 2, 3, 4]).to(allPass(beLessThan(5)))
