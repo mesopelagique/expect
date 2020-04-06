@@ -132,7 +132,7 @@ _.expect(3).notTo(_.beGreaterThanOrEqualTo(4))
 _.expect(1.2).to(_.beCloseTo(1.1;0.1))
 ```
 
-#### Exception
+#### Error
 
 Wrap using a formula, then check if an assert has been raised. You can match also message or error code
 
