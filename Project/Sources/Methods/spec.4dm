@@ -11,7 +11,7 @@ If (cs:C1710.Predicate.builder=Null:C1517)
 		C_COLLECTION:C1488($cols)
 		$cols:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
 			"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";\
-			"beTruthy";"beTrue";"beFalsy";"beFalse";"beNull")
+			"beTruthy";"beTrue";"beFalsy";"beFalse";"beNull";"beEmpty";"beginWith";"endWith")
 		
 		C_TEXT:C284($predicate)
 		For each ($predicate;$cols)
