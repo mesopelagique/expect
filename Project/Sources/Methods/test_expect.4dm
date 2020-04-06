@@ -7,6 +7,30 @@ _.expect(1+1).to(_.equal(2))
 _.expect("seahorse").to(_.contain("sea");"correct test")
   //_ .expect("seahorse").to(_ .contain("seazz");"bad test")
 
+_.expect("").to(_.beEmpty())
+  //_.expect("not empty").to(_.beEmpty())
+_.expect("not empty").toNot(_.beEmpty())
+
+_.expect(New collection:C1472()).to(_.beEmpty())
+  //_.expect(New collection("not empty")).to(_.beEmpty())
+_.expect(New collection:C1472("not empty")).toNot(_.beEmpty())
+
+_.expect(New object:C1471()).to(_.beEmpty())
+_.expect(New object:C1471("key";"value")).toNot(_.beEmpty())
+
+_.expect("seahorse").to(_.beginWith("sea"))
+_.expect("seahorse").toNot(_.beginWith("horse"))
+_.expect("seahorse").to(_.endWith("horse"))
+_.expect("seahorse").toNot(_.endWith("endWith"))
+
+_.expect(New collection:C1472("sea";"horse";"seahorse")).to(_.beginWith("sea"))
+_.expect(New collection:C1472()).toNot(_.beginWith("sea"))
+_.expect(New collection:C1472("horse";"sea")).toNot(_.beginWith("sea"))
+
+_.expect(New collection:C1472("horse";"seahorse";"sea")).to(_.endWith("sea"))
+_.expect(New collection:C1472()).toNot(_.endWith("sea"))
+_.expect(New collection:C1472("sea";"horse")).toNot(_.endWith("sea"))
+
 _.expect(New collection:C1472("Atlantic";"Pacific";"Mississippi")).to(_.contain("Mississippi"))
   //_ .expect(New collection("Atlantic";"Pacific")).to(_ .contain("Mississippi"))
 
@@ -48,9 +72,6 @@ _.expect(3).notTo(_.beGreaterThanOrEqualTo(4))
   // TODO
   //_ .expect(1.2).to(_ .beCloseTo(1.1;0.1))// expected, within: delta
   //_ .expect(structObject).to(_ .beAnInstanceOf(cs.SomeClass))
-  //_ .expect(actual).to(beEmpty());
-  //_ .expect(actual).to(beginWith(expected...))
-  //_ .expect(actual).to(endWith(expected...)
   //_ .expect(turtles).to(containElementSatisfying(Formula)
   //_ .expect(actual).to(haveCount(expected))
   //_ .expect([1, 2, 3, 4]).to(allPass(beLessThan(5)))

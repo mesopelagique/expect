@@ -36,6 +36,8 @@ _ .expect(1+1).to(_ .beEqualTo(2))
 
 ```4d
 _ .expect("seahorse").to(_ .contain("sea"))
+_ .expect("seahorse").to(_ .beginWith("sea"))
+_ .expect("seahorse").to(_ .endWithWith("horse"))
 ```
 
 #### Collections
@@ -50,6 +52,15 @@ _ .expect(New collection("Atlantic";"Pacific")).toNot(_ .contain("Mississippi"))
 ```4d
 _ .expect(Null).to(_ .beNull())
 _ .expect("Null").notTo(_ .beNull())
+```
+
+#### Emptiness
+
+```4d
+_ .expect("").to(_ .beEmpty())
+_ .expect("test").toNot(_ .beEmpty())
+_ .expect(New collection("a")).toNot(_ .beEmpty())
+_ .expect(New object()).to(_ .beEmpty())
 ```
 
 #### True or False or contain True or False element

@@ -47,6 +47,57 @@ Function contain
 			$0.message:="Unexpected type for contain predicate: "+String:C10(Value type:C1509(This:C1470.value))
 	End case 
 	
+Function beginWith
+	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)  // XXX for collection could support more than one elemeent
+	$0:=New object:C1471()
+	
+	Case of 
+		: (Value type:C1509($1)=Is collection:K8:32)
+			$0.pass:=New collection:C1472(This:C1470.value).equal($1.slice(0;1))  // XXX and here adapt slice
+			If (Not:C34($0.pass))
+				$0.message:="'"+This:C1470.stringify(This:C1470.value)+"' is not first element of'"+This:C1470.stringify($1)+"'"
+			Else 
+				$0.message:="'"+This:C1470.stringify(This:C1470.value)+"' must not  be first element of '"+This:C1470.stringify($1)+"'"
+			End if 
+		: (Value type:C1509($1)=Is text:K8:3)
+			$0.pass:=Position:C15(This:C1470.stringify(This:C1470.value);$1)=1
+			If (Not:C34($0.pass))
+				$0.message:="'"+String:C10($1)+"' does not begin with '"+This:C1470.stringify(This:C1470.value)+"'"
+			Else 
+				$0.message:="'"+String:C10($1)+"' must not begin with '"+This:C1470.stringify(This:C1470.value)+"'"
+			End if 
+		Else 
+			$0.pass:=False:C215
+			$0.message:="Unexpected type for contain predicate: "+String:C10(Value type:C1509(This:C1470.value))
+	End case 
+	
+Function endWith
+	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
+	$0:=New object:C1471()
+	
+	Case of 
+		: (Value type:C1509($1)=Is collection:K8:32)
+			$0.pass:=New collection:C1472(This:C1470.value).equal($1.slice(-1))  // XXX and here adapt slice
+			If (Not:C34($0.pass))
+				$0.message:="'"+This:C1470.stringify(This:C1470.value)+"' is not the last element of '"+This:C1470.stringify($1)+"'"
+			Else 
+				$0.message:="'"+This:C1470.stringify(This:C1470.value)+"' must not be the last element of '"+This:C1470.stringify($1)+"'"
+			End if 
+		: (Value type:C1509($1)=Is text:K8:3)
+			$0.pass:=Position:C15(This:C1470.stringify(This:C1470.value);$1)=(Length:C16($1)-Length:C16(This:C1470.stringify(This:C1470.value))+1)
+			If (Not:C34($0.pass))
+				$0.message:="'"+String:C10($1)+"' does not end with '"+This:C1470.stringify(This:C1470.value)+"'"
+			Else 
+				$0.message:="'"+String:C10($1)+"' must not end with '"+This:C1470.stringify(This:C1470.value)+"'"
+			End if 
+		Else 
+			$0.pass:=False:C215
+			$0.message:="Unexpected type for contain predicate: "+String:C10(Value type:C1509(This:C1470.value))
+	End case 
+	
+	
 Function beTruthy
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)
@@ -175,6 +226,39 @@ Function beNull
 	Else 
 		$0.message:="Expecting to be not Nil"
 	End if 
+	
+Function beEmpty
+	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
+	$0:=New object:C1471()
+	Case of 
+		: (Value type:C1509($1)=Is text:K8:3)
+			$0.pass:=Length:C16($1)=0
+			If (Not:C34($0.pass))
+				$0.message:="Expecting '"+This:C1470.stringify($1)+"' to be empty"
+			Else 
+				$0.message:="Expecting to be not empty"
+			End if 
+		: (Value type:C1509($1)=Is collection:K8:32)
+			$0.pass:=$1.length=0
+			If (Not:C34($0.pass))
+				$0.message:="Expecting '"+This:C1470.stringify($1)+"' to be empty"
+			Else 
+				$0.message:="Expecting to be not empty"
+			End if 
+		: (Value type:C1509($1)=Is object:K8:27)
+			$0.pass:=OB Is empty:C1297($1)
+			If (Not:C34($0.pass))
+				$0.message:="Expecting '"+This:C1470.stringify($1)+"' to be empty"
+			Else 
+				$0.message:="Expecting to be not empty"
+			End if 
+		Else 
+			
+			$0.pass:=False:C215
+			$0.message:="Unexpecting input type to check emptiness"
+			
+	End case 
 	
 Function beLessThan
 	C_OBJECT:C1216($0)
