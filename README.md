@@ -21,10 +21,12 @@ tu .expect(1+1).to(tu .equal(2))
 
 ```4d
 tu .expect("seahorse").to(tu .contain("sea"))
+```
 
 ```4d
 tu .expect(New collection:C1472("Atlantic";"Pacific";"Mississippi")).to(tu .contain("Mississippi"))
 tu .expect(New collection:C1472("Atlantic";"Pacific")).toNot(tu .contain("Mississippi"))
+```
 
 ```4d
 tu .expect(Null:C1517).to(tu .beNull())
