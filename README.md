@@ -17,26 +17,34 @@ With
 
 ```4d
 tu .expect(1+1).to(tu .equal(2))
+```
 
+```4d
 tu .expect("seahorse").to(tu .contain("sea"))
 
+```4d
 tu .expect(New collection:C1472("Atlantic";"Pacific";"Mississippi")).to(tu .contain("Mississippi"))
-
 tu .expect(New collection:C1472("Atlantic";"Pacific")).toNot(tu .contain("Mississippi"))
 
+```4d
 tu .expect(Null:C1517).to(tu .beNull())
 tu .expect("Null").notTo(tu .beNull())
+```
 
+```4d
 tu .expect(True:C214).to(tu .beTrue())
 tu .expect(False:C215).to(tu .beFalse())
 
 tu .expect(True:C214).to(tu .beTruthy())
 tu .expect(New object:C1471("message";"Test";"success";True:C214)).to(tu .beTruthy())
 tu .expect(New collection:C1472("message";"Test";"success";True:C214)).to(tu .beTruthy())
+
 tu .expect(False:C215).to(tu .beFalsy())
 tu .expect(New object:C1471("message";"Test";"success";False:C215)).to(tu .beFalsy())
 tu .expect(New collection:C1472("message";"Test";"success";False:C215)).to(tu .beFalsy())
+```
 
+```4d
 tu .expect(1).to(tu .beLessThan(2))
 tu .expect(1).to(tu .beLessThanOrEqualTo(2))
 tu .expect(1).to(tu .beLessThanOrEqualTo(1))
