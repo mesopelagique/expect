@@ -16,7 +16,7 @@ Function equal
 		$0.message:="Expecting to be not '"+This:C1470.stringify(This:C1470.value)+"'"
 	End if 
 	
-Function beEqual
+Function beEqualTo
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)
 	$0:=This:C1470.equal($1)
