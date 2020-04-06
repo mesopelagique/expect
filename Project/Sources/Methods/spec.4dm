@@ -10,13 +10,13 @@ If (cs:C1710.Predicate.builder=Null:C1517)
 		
 		C_COLLECTION:C1488($cols)
 		$cols:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
-			"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";\
+			"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";"beCloseTo";\
 			"beTruthy";"beTrue";"beFalsy";"beFalse";"beNull";"beEmpty";"haveLength";"beginWith";"endWith";\
-			"beAnInstanceOf";"allPass")
+			"beAnInstanceOf";"allPass";"containElementSatisfying")
 		
 		C_TEXT:C284($predicate)
 		For each ($predicate;$cols)
-			cs:C1710.Predicate.builder[$predicate]:=Formula:C1597(cs:C1710.Predicate.new($predicate;$1;$2))
+			cs:C1710.Predicate.builder[$predicate]:=Formula:C1597(cs:C1710.Predicate.new($predicate;$1;$2))  // XXX limited to 2 parameters for the moment
 		End for each 
 		
 	End use 

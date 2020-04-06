@@ -4,7 +4,17 @@ Class constructor
 	C_VARIANT:C1683($2)
 	This:C1470.formula:=$1
 	This:C1470.value:=$2
-	  // This.values:={$2,$3,$4...  // XXX array of args?
+	
+	C_VARIANT:C1683(${2})
+	C_LONGINT:C283($count)
+	$count:=Count parameters:C259
+	If ($count>2)
+		This:C1470.values:=New collection:C1472()
+		C_LONGINT:C283($i)
+		For ($i;2;$count;1)
+			This:C1470.values.push(${$i})
+		End for 
+	End if 
 	
 Function equal
 	C_OBJECT:C1216($0)
@@ -331,6 +341,20 @@ Function beGreaterThanOrEqualTo
 		$0.message:="Expecting '"+This:C1470.stringify(This:C1470.value)+"' to not to be greater or equal than '"+This:C1470.stringify($1)+"'"
 	End if 
 	
+Function beCloseTo
+	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
+	$0:=New object:C1471()
+	
+	This:C1470.delta:=Num:C11(This:C1470.values[1])
+	$0.pass:=((Num:C11($1)>=(Num:C11(This:C1470.value)-This:C1470.delta)) & (Num:C11($1)<=(Num:C11(This:C1470.value)+This:C1470.delta)))
+	If (Not:C34($0.pass))
+		$0.message:="Expecting '"+This:C1470.stringify($1)+"' to be close to '"+This:C1470.stringify(This:C1470.value)+"' with delta '"+String:C10(This:C1470.delta)+""
+	Else 
+		$0.message:="Expecting '"+This:C1470.stringify($1)+"' to be notclose to '"+This:C1470.stringify(This:C1470.value)+"' with delta '"+String:C10(This:C1470.delta)+""
+	End if 
+	
+	
 Function beAnInstanceOf
 	C_OBJECT:C1216($0)
 	C_OBJECT:C1216($1)
@@ -359,6 +383,21 @@ Function allPass
 	End for each 
 	  // XXX message if not passing
 	
+Function containElementSatisfying
+	C_OBJECT:C1216($0)
+	C_COLLECTION:C1488($1)
+	$0:=New object:C1471()
+	C_VARIANT:C1683($var)
+	$0.pass:=False:C215
+	For each ($var;$1) Until ($0.pass)
+		$0.pass:=This:C1470.value.call(New object:C1471("value";$var))
+	End for each 
+	If (Not:C34($0.pass))
+		$0.message:="No element of "+This:C1470.stringify($1)+" satisfy the passed formula "+This:C1470.stringify(This:C1470.value)
+	Else 
+		$0.message:="One element of "+This:C1470.stringify($1)+" satisfy the passed formula "+This:C1470.stringify(This:C1470.value)+" but must not"
+	End if 
+	
 Function execute
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)
@@ -369,7 +408,17 @@ Function stringify
 	C_VARIANT:C1683($1)
 	Case of 
 		: (Value type:C1509($1)=Is object:K8:27)
-			$0:=JSON Stringify:C1217($1)
+			
+			Case of 
+				: (OB Instance of:C1731($1;4D:C1709.Function))
+					$0:="Function("+String:C10($1.source)+")"
+				: (OB Instance of:C1731($1;4D:C1709.Folder))
+					$0:="Folder("+String:C10($1.path)+")"
+				: (OB Instance of:C1731($1;4D:C1709.File))
+					$0:="File("+String:C10($1.path)+")"
+				Else 
+					$0:=JSON Stringify:C1217($1)
+			End case 
 		: (Value type:C1509($1)=Is collection:K8:32)
 			$0:=JSON Stringify:C1217($1)
 		Else 

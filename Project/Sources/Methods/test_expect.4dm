@@ -37,6 +37,10 @@ _.expect(New collection:C1472("Atlantic";"Pacific";"Mississippi")).to(_.contain(
 _.expect(New collection:C1472("Atlantic";"Pacific")).toNot(_.contain("Mississippi"))
   //_ .expect(New collection("Atlantic";"Pacific";"Mississippi")).toNot(_ .contain("Mississippi"))
 
+_.expect(New collection:C1472("Atlantic";"Pacific")).to(_.containElementSatisfying(Formula:C1597(Position:C15("A";This:C1470.value)=1)))
+_.expect(New collection:C1472("Atlantic";"Pacific")).toNot(_.containElementSatisfying(Formula:C1597(Position:C15("M";This:C1470.value)=1)))
+  //_.expect(New collection("Atlantic";"Pacific")).toNot(_.containElementSatisfying(Formula(Position("P";This.value)=1)))
+
 _.expect(Null:C1517).to(_.beNull())
   //_ .expect("Null").to(_ .beNil())
 
@@ -68,6 +72,8 @@ _.expect(3).to(_.beGreaterThan(2))
 _.expect(3).to(_.beGreaterThanOrEqualTo(2))
 _.expect(3).to(_.beGreaterThanOrEqualTo(3))
 _.expect(3).notTo(_.beGreaterThanOrEqualTo(4))
+_.expect(1.2).to(_.beCloseTo(1.1;0.1))
+_.expect(5.2).notTo(_.beCloseTo(1.1;0.1))
 
 _.expect(cs:C1710.Predicate.new()).to(_.beAnInstanceOf(cs:C1710.Predicate))
 _.expect(cs:C1710.Predicate.new()).toNot(_.beAnInstanceOf(cs:C1710.Expect))
@@ -81,7 +87,3 @@ _.expect(New collection:C1472("test";"test")).to(_.haveLength(2))
 _.expect(New collection:C1472(1;2;3;4)).to(_.allPass(_.beLessThan(5)))
 _.expect(New collection:C1472(1;2;3;4)).notTo(_.allPass(_.beLessThan(2)))
 
-  // TODO
-  //_ .expect(1.2).to(_ .beCloseTo(1.1;0.1))// expected, within: delta
-
-  //_ .expect(turtles).to(containElementSatisfying(Formula)
