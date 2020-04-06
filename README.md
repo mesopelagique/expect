@@ -55,3 +55,12 @@ tu .expect(3).to(tu .beGreaterThanOrEqualTo(2))
 tu .expect(3).to(tu .beGreaterThanOrEqualTo(3))
 tu .expect(3).notTo(tu .beGreaterThanOrEqualTo(4))
 ```
+
+#### shortcut
+
+Do not want to use `tu`
+
+```4d
+_:=tu
+_ .expect(1+1).to(_ .equal(2))
+```
