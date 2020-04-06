@@ -11,14 +11,14 @@ Matchers component inspired by [RSpec expectations](https://relishapp.com/rspec/
 
 ```4d
 _ = spec // shared method of component
-_ .expect(<value>).to(_ .<predicate>))
+_.expect(<value>).to(_.<predicate>))
 ```
 
 or to inverse predicate
 
 ```4d
-_ .expect(<value>).notTo(_ .<predicate>)
-_ .expect(<value>).toNot(_ .<predicate>)
+_.expect(<value>).notTo(_.<predicate>)
+_.expect(<value>).toNot(_.<predicate>)
 ```
 
 with:
@@ -29,65 +29,65 @@ with:
 ### Examples
 
 ```4d
-_ .expect(1+1).to(_ .beEqualTo(2))
+_.expect(1+1).to(_.beEqualTo(2))
 ```
 
 #### String
 
 ```4d
-_ .expect("seahorse").to(_ .contain("sea"))
-_ .expect("seahorse").to(_ .beginWith("sea"))
-_ .expect("seahorse").to(_ .endWithWith("horse"))
+_.expect("seahorse").to(_.contain("sea"))
+_.expect("seahorse").to(_.beginWith("sea"))
+_.expect("seahorse").to(_.endWith("horse"))
 ```
 
 #### Collections
 
 ```4d
-_ .expect(New collection("Atlantic";"Pacific";"Mississippi")).to(_ .contain("Mississippi"))
-_ .expect(New collection("Atlantic";"Pacific")).toNot(_ .contain("Mississippi"))
+_.expect(New collection("Atlantic";"Pacific";"Mississippi")).to(_.contain("Mississippi"))
+_.expect(New collection("Atlantic";"Pacific")).toNot(_.contain("Mississippi"))
 ```
 
 #### Null or not
 
 ```4d
-_ .expect(Null).to(_ .beNull())
-_ .expect("Null").notTo(_ .beNull())
+_.expect(Null).to(_.beNull())
+_.expect("Null").notTo(_.beNull())
 ```
 
 #### Emptiness
 
 ```4d
-_ .expect("").to(_ .beEmpty())
-_ .expect("test").toNot(_ .beEmpty())
-_ .expect(New collection("a")).toNot(_ .beEmpty())
-_ .expect(New object()).to(_ .beEmpty())
+_.expect("").to(_.beEmpty())
+_.expect("test").toNot(_.beEmpty())
+_.expect(New collection("a")).toNot(_.beEmpty())
+_.expect(New object()).to(_.beEmpty())
 ```
 
 #### True or False or contain True or False element
 
 ```4d
-_ .expect(True).to(_ .beTrue())
-_ .expect(False).to(_ .beFalse())
+_.expect(True).to(_.beTrue())
+_.expect(False).to(_.beFalse())
 
-_ .expect(True).to(_ .beTruthy())
-_ .expect(New object("message";"Test";"success";True)).to(_ .beTruthy())
-_ .expect(New collection("Test";True)).to(_ .beTruthy())
+_.expect(True).to(_.beTruthy())
+_.expect(New object("message";"Test";"success";True)).to(_.beTruthy())
+_.expect(New collection("Test";True)).to(_.beTruthy())
 
-_ .expect(False).to(_ .beFalsy())
-_ .expect(New object("message";"Test";"success";False)).to(_ .beFalsy())
-_ .expect(New collection("Test";False;5)).to(_ .beFalsy())
+_.expect(False).to(_.beFalsy())
+_.expect(New object("message";"Test";"success";False)).to(_.beFalsy())
+_.expect(New collection("Test";False;5)).to(_.beFalsy())
 ```
 
 #### Numeric comparaison
 
 ```4d
-_ .expect(1).to(_ .beLessThan(2))
-_ .expect(1).to(_ .beLessThanOrEqualTo(2))
-_ .expect(1).to(_ .beLessThanOrEqualTo(1))
-_ .expect(3).to(_ .beGreaterThan(2))
-_ .expect(3).to(_ .beGreaterThanOrEqualTo(2))
-_ .expect(3).to(_ .beGreaterThanOrEqualTo(3))
-_ .expect(3).notTo(_ .beGreaterThanOrEqualTo(4))
+_.expect(1).to(_.beLessThan(2))
+_.expect(1).to(_.beLessThanOrEqualTo(2))
+_.expect(1).to(_.beLessThanOrEqualTo(1))
+_.expect(3).to(_.beGreaterThan(2))
+_.expect(3).to(_.beGreaterThanOrEqualTo(2))
+_.expect(3).to(_.beGreaterThanOrEqualTo(3))
+_.expect(3).notTo(_.beGreaterThanOrEqualTo(4))
 ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
