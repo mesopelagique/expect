@@ -11,10 +11,10 @@ Matchers component inspired by [RSpec expectations](https://relishapp.com/rspec/
 
 ```4d
 _ = spec // shared method of component
-_.expect(<value>).to(_.<predicate>))
+_.expect(<value>).to(_.<predicate>)
 ```
 
-or to inverse predicate
+or to inverse the predicate
 
 ```4d
 _.expect(<value>).notTo(_.<predicate>)
