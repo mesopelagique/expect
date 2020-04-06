@@ -47,6 +47,7 @@ _.expect(New collection("Atlantic";"Pacific";"Mississippi")).to(_.contain("Missi
 _.expect(New collection("Atlantic";"Pacific")).toNot(_.contain("Mississippi"))
 
 _.expect(New collection(1;2;3;4)).to(_.allPass(_.beLessThan(5)))
+_.expect(New collection("Atlantic";"Pacific")).to(_.containElementSatisfying(Formula(Position("A";This.value)=1)))
 ```
 
 #### Null or not
@@ -97,6 +98,7 @@ _.expect(3).to(_.beGreaterThan(2))
 _.expect(3).to(_.beGreaterThanOrEqualTo(2))
 _.expect(3).to(_.beGreaterThanOrEqualTo(3))
 _.expect(3).notTo(_.beGreaterThanOrEqualTo(4))
+_.expect(1.2).to(_.beCloseTo(1.1;0.1))
 ```
 
 #### Class
