@@ -1,6 +1,6 @@
 # expect
 
-Matchers components
+Matchers component inspired by [RSpec expectations](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers)
 
 ## Usage
 
