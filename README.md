@@ -63,6 +63,13 @@ _.expect(New collection("a")).toNot(_.beEmpty())
 _.expect(New object()).to(_.beEmpty())
 ```
 
+#### Length
+
+```4d
+_.expect("test").to(_.haveLength(4))
+_.expect(New collection("a")).toNot(_.haveLength(1))
+```
+
 #### True or False or contain True or False element
 
 ```4d
@@ -88,6 +95,12 @@ _.expect(3).to(_.beGreaterThan(2))
 _.expect(3).to(_.beGreaterThanOrEqualTo(2))
 _.expect(3).to(_.beGreaterThanOrEqualTo(3))
 _.expect(3).notTo(_.beGreaterThanOrEqualTo(4))
+```
+
+#### Class
+
+```4d
+_.expect($anInstance)).to(_.beAnInstanceOf(cs.MyClass))
 ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
