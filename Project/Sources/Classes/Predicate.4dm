@@ -398,6 +398,65 @@ Function containElementSatisfying
 		$0.message:="One element of "+This:C1470.stringify($1)+" satisfy the passed formula "+This:C1470.stringify(This:C1470.value)+" but must not"
 	End if 
 	
+Function raiseError
+	C_OBJECT:C1216($0)
+	C_OBJECT:C1216($1)
+	$0:=New object:C1471()
+	$0.pass:=False:C215
+	
+	If (OB Instance of:C1731($1;4D:C1709.Function))
+		C_TEXT:C284($restoreOnError)
+		$restoreOnError:=Method called on error:C704
+		ON ERR CALL:C155("catchError")
+		Error:=0
+		$1.call(Null:C1517)
+		$0.pass:=(Error#0)
+		If (Not:C34($0.pass))
+			$0.message:="Expected to raise an error"
+		Else 
+			$0.message:="Expected to not raise an error:"
+			ARRAY LONGINT:C221($aL_codes;0x0000)
+			ARRAY TEXT:C222($aT_components;0x0000)
+			ARRAY TEXT:C222($aT_errors;0x0000)
+			GET LAST ERROR STACK:C1015($aL_codes;$aT_components;$aT_errors)
+			
+			If (Size of array:C274($aT_errors)>0)
+				
+				If (Length:C16($aT_errors{1})>0)
+					
+					If (Application type:C494=4D Remote mode:K5:5)\
+						 | ((Position:C15($aT_errors{1};ERROR FORMULA)=0) & (Length:C16(ERROR FORMULA)#0))
+						
+						If (This:C1470.value#Null:C1517)  // check message
+							Case of 
+								: (Value type:C1509(This:C1470.value)=Is text:K8:3)
+									$0.pass:=(This:C1470.value=$aT_errors{1})
+									If (Not:C34($0.pass))
+										$0.message:="Expected to raise an error with message "+String:C10(This:C1470.value)+" but receive "+$aT_errors{1}
+									End if 
+								: (Value type:C1509(This:C1470.value)=Is real:K8:4))
+									$0.pass:=(This:C1470.value=$aL_codes{1})
+									If (Not:C34($0.pass))
+										$0.message:="Expected to raise an error with code "+String:C10(This:C1470.value)+" but receive "+String:C10($aL_codes{1})
+									End if 
+							End case 
+							
+						End if 
+						
+						If ($0.pass)
+							$0.message:=$0.message+":"+$aT_errors{1}
+						End if 
+						
+					End if 
+				End if 
+			End if 
+		End if 
+		ON ERR CALL:C155($restoreOnError)
+	Else 
+		$0.message:="Passed object must be a function"
+	End if 
+	
+	
 Function execute
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)
