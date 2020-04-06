@@ -78,8 +78,10 @@ _.expect("test").to(_.haveLength(4))
 _.expect(New collection:C1472()).to(_.haveLength(0))
 _.expect(New collection:C1472("test";"test")).to(_.haveLength(2))
 
+_.expect(New collection:C1472(1;2;3;4)).to(_.allPass(_.beLessThan(5)))
+_.expect(New collection:C1472(1;2;3;4)).notTo(_.allPass(_.beLessThan(2)))
+
   // TODO
   //_ .expect(1.2).to(_ .beCloseTo(1.1;0.1))// expected, within: delta
 
   //_ .expect(turtles).to(containElementSatisfying(Formula)
-  //_ .expect([1, 2, 3, 4]).to(allPass(beLessThan(5)))

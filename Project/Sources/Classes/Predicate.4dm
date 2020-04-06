@@ -343,6 +343,22 @@ Function beAnInstanceOf
 		$0.message:="Expecting '"+This:C1470.stringify($1)+":"+This:C1470.stringify(OB Class:C1730($1))+"' to be instance of '"+This:C1470.stringify(This:C1470.value)+"'"
 	End if 
 	
+Function allPass
+	C_OBJECT:C1216($0)
+	C_COLLECTION:C1488($1)
+	$0:=New object:C1471()
+	C_VARIANT:C1683($var)
+	C_OBJECT:C1216($result)
+	$0.pass:=True:C214
+	For each ($var;$1)
+		$result:=This:C1470.value.execute($var)
+		If (Not:C34($result.pass))
+			$0.pass:=False:C215
+			$0.message:=$result.message
+		End if 
+	End for each 
+	  // XXX message if not passing
+	
 Function execute
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)

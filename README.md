@@ -45,6 +45,8 @@ _.expect("seahorse").to(_.endWith("horse"))
 ```4d
 _.expect(New collection("Atlantic";"Pacific";"Mississippi")).to(_.contain("Mississippi"))
 _.expect(New collection("Atlantic";"Pacific")).toNot(_.contain("Mississippi"))
+
+_.expect(New collection(1;2;3;4)).to(_.allPass(_.beLessThan(5)))
 ```
 
 #### Null or not
