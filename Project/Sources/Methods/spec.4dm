@@ -12,7 +12,7 @@ If (cs:C1710.Predicate.builder=Null:C1517)
 		$cols:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
 			"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";\
 			"beTruthy";"beTrue";"beFalsy";"beFalse";"beNull";"beEmpty";"haveLength";"beginWith";"endWith";\
-			"beAnInstanceOf")
+			"beAnInstanceOf";"allPass")
 		
 		C_TEXT:C284($predicate)
 		For each ($predicate;$cols)
