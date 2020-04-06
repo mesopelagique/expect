@@ -35,14 +35,14 @@ _ .expect("seahorse").to(_ .contain("sea"))
 #### Collections
 
 ```4d
-_ .expect(New collection:C1472("Atlantic";"Pacific";"Mississippi")).to(_ .contain("Mississippi"))
-_ .expect(New collection:C1472("Atlantic";"Pacific")).toNot(_ .contain("Mississippi"))
+_ .expect(New collection("Atlantic";"Pacific";"Mississippi")).to(_ .contain("Mississippi"))
+_ .expect(New collection("Atlantic";"Pacific")).toNot(_ .contain("Mississippi"))
 ```
 
 #### Null or not
 
 ```4d
-_ .expect(Null:C1517).to(_ .beNull())
+_ .expect(Null).to(_ .beNull())
 _ .expect("Null").notTo(_ .beNull())
 ```
 
@@ -53,12 +53,12 @@ _ .expect(True:C214).to(_ .beTrue())
 _ .expect(False:C215).to(_ .beFalse())
 
 _ .expect(True:C214).to(_ .beTruthy())
-_ .expect(New object:C1471("message";"Test";"success";True:C214)).to(_ .beTruthy())
-_ .expect(New collection:C1472("message";"Test";"success";True:C214)).to(_ .beTruthy())
+_ .expect(New object("message";"Test";"success";True)).to(_ .beTruthy())
+_ .expect(New collection("message";"Test";"success";True)).to(_ .beTruthy())
 
 _ .expect(False:C215).to(_ .beFalsy())
-_ .expect(New object:C1471("message";"Test";"success";False:C215)).to(_ .beFalsy())
-_ .expect(New collection:C1472("message";"Test";"success";False:C215)).to(_ .beFalsy())
+_ .expect(New object("message";"Test";"success";False)).to(_ .beFalsy())
+_ .expect(New collection("message";"Test";"success";False)).to(_ .beFalsy())
 ```
 
 #### Numeric comparaison
