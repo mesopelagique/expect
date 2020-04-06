@@ -11,21 +11,20 @@ Matchers component inspired by [RSpec expectations](https://relishapp.com/rspec/
 
 ```4d
 _ = spec // shared method of component
-_ .expect(<actual>).to(_ .<predicate>(<expected>))
+_ .expect(<value>).to(_ .<predicate>))
 ```
 
 or to inverse predicate
 
 ```4d
-_ .expect(<actual>).notTo(_ .<predicate>(<expected>))
-_ .expect(<actual>).toNot(_ .<predicate>(<expected>))
+_ .expect(<value>).notTo(_ .<predicate>)
+_ .expect(<value>).toNot(_ .<predicate>)
 ```
 
-With:
+with:
 
-- `actual`: result of your computations (in unit test, value to test)
+- `value`: result of your computations to check
 - `predicate`: a defined predicate such as `equal`, `contain`, etc...
-- `expected`: value(s) associated to the predicate
 
 ### Examples
 
