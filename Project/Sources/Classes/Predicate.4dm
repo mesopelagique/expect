@@ -1,6 +1,7 @@
 
 Class constructor
 	C_TEXT:C284($1)
+	C_VARIANT:C1683($2)
 	This:C1470.formula:=$1
 	This:C1470.value:=$2
 	  // This.values:={$2,$3,$4...  // XXX array of args?
@@ -75,6 +76,7 @@ Function beTruthy
 			End if 
 		: (Value type:C1509($1)=Is object:K8:27)
 			$0.pass:=False:C215
+			C_TEXT:C284($key)
 			For each ($key;$1) Until ($0.pass)
 				$var:=$1[$key]
 				If (Value type:C1509($var)=Is boolean:K8:9)
@@ -90,7 +92,7 @@ Function beTruthy
 			End if 
 		Else 
 			$0.pass:=False:C215
-			$0.message:="Unknown type "String:C10(Value type:C1509($1))+" for beTruthy"
+			$0.message:="Unknown type "+String:C10(Value type:C1509($1))+" for beTruthy"
 	End case 
 	
 Function beTrue
@@ -133,6 +135,7 @@ Function beFalsy
 			End if 
 		: (Value type:C1509($1)=Is object:K8:27)
 			$0.pass:=False:C215
+			C_TEXT:C284($key)
 			For each ($key;$1) Until ($0.pass)
 				$var:=$1[$key]
 				If (Value type:C1509($var)=Is boolean:K8:9)
@@ -148,7 +151,7 @@ Function beFalsy
 			End if 
 		Else 
 			$0.pass:=False:C215
-			$0.message:="Unknown type "String:C10(Value type:C1509($1))+" for beFalsy"
+			$0.message:="Unknown type "+String:C10(Value type:C1509($1))+" for beFalsy"
 	End case 
 	
 Function beFalse
@@ -164,6 +167,7 @@ Function beFalse
 	
 Function beNull
 	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
 	$0:=New object:C1471()
 	$0.pass:=($1=Null:C1517)
 	If (Not:C34($0.pass))
@@ -207,6 +211,7 @@ Function beGreaterThan
 	
 Function beGreaterThanOrEqualTo
 	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
 	$0:=New object:C1471()
 	$0.pass:=Num:C11($1)>=Num:C11(This:C1470.value)
 	If (Not:C34($0.pass))

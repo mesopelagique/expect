@@ -1,5 +1,5 @@
 //%attributes = {}
-_:=tu 
+_:=spec 
 
 _.expect(1+1).to(_.equal(2))
   //_ .expect(1+1).to(_ .equal(4);"bad test")
