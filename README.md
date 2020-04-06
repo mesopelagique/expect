@@ -1,14 +1,21 @@
 # expect
+[![language][code-shield]][code-url]
+[![language-top][code-top]][code-url]
+![code-size][code-size]
+[![release][release-shield]][release-url]
+[![license][license-shield]][license-url]
 
 Matchers component inspired by [RSpec expectations](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers)
 
 ## Usage
 
 ```4d
-tu .expect(<actual>).to(tu .<predicate>(<expected>))
+_ = spec // shared method of component
+_ .expect(<actual>).to(_ .<predicate>(<expected>))
 ```
 
-With 
+With:
+
 - `actual`: result of your computations (in unit test, value to test)
 - `predicate`: a defined predicate such as `equal`, `contain`, etc...
 - `expected`: value(s) associated to the predicate
@@ -16,51 +23,63 @@ With
 ### Examples
 
 ```4d
-tu .expect(1+1).to(tu .equal(2))
+_ .expect(1+1).to(_ .beEqualTo(2))
 ```
+
+#### String
 
 ```4d
-tu .expect("seahorse").to(tu .contain("sea"))
+_ .expect("seahorse").to(_ .contain("sea"))
 ```
+
+#### Collections
 
 ```4d
-tu .expect(New collection:C1472("Atlantic";"Pacific";"Mississippi")).to(tu .contain("Mississippi"))
-tu .expect(New collection:C1472("Atlantic";"Pacific")).toNot(tu .contain("Mississippi"))
+_ .expect(New collection:C1472("Atlantic";"Pacific";"Mississippi")).to(_ .contain("Mississippi"))
+_ .expect(New collection:C1472("Atlantic";"Pacific")).toNot(_ .contain("Mississippi"))
 ```
+
+#### Null or not
 
 ```4d
-tu .expect(Null:C1517).to(tu .beNull())
-tu .expect("Null").notTo(tu .beNull())
+_ .expect(Null:C1517).to(_ .beNull())
+_ .expect("Null").notTo(_ .beNull())
 ```
+
+#### True or False or contain True or False element
 
 ```4d
-tu .expect(True:C214).to(tu .beTrue())
-tu .expect(False:C215).to(tu .beFalse())
+_ .expect(True:C214).to(_ .beTrue())
+_ .expect(False:C215).to(_ .beFalse())
 
-tu .expect(True:C214).to(tu .beTruthy())
-tu .expect(New object:C1471("message";"Test";"success";True:C214)).to(tu .beTruthy())
-tu .expect(New collection:C1472("message";"Test";"success";True:C214)).to(tu .beTruthy())
+_ .expect(True:C214).to(_ .beTruthy())
+_ .expect(New object:C1471("message";"Test";"success";True:C214)).to(_ .beTruthy())
+_ .expect(New collection:C1472("message";"Test";"success";True:C214)).to(_ .beTruthy())
 
-tu .expect(False:C215).to(tu .beFalsy())
-tu .expect(New object:C1471("message";"Test";"success";False:C215)).to(tu .beFalsy())
-tu .expect(New collection:C1472("message";"Test";"success";False:C215)).to(tu .beFalsy())
+_ .expect(False:C215).to(_ .beFalsy())
+_ .expect(New object:C1471("message";"Test";"success";False:C215)).to(_ .beFalsy())
+_ .expect(New collection:C1472("message";"Test";"success";False:C215)).to(_ .beFalsy())
 ```
+
+#### Numeric comparaison
 
 ```4d
-tu .expect(1).to(tu .beLessThan(2))
-tu .expect(1).to(tu .beLessThanOrEqualTo(2))
-tu .expect(1).to(tu .beLessThanOrEqualTo(1))
-tu .expect(3).to(tu .beGreaterThan(2))
-tu .expect(3).to(tu .beGreaterThanOrEqualTo(2))
-tu .expect(3).to(tu .beGreaterThanOrEqualTo(3))
-tu .expect(3).notTo(tu .beGreaterThanOrEqualTo(4))
+_ .expect(1).to(_ .beLessThan(2))
+_ .expect(1).to(_ .beLessThanOrEqualTo(2))
+_ .expect(1).to(_ .beLessThanOrEqualTo(1))
+_ .expect(3).to(_ .beGreaterThan(2))
+_ .expect(3).to(_ .beGreaterThanOrEqualTo(2))
+_ .expect(3).to(_ .beGreaterThanOrEqualTo(3))
+_ .expect(3).notTo(_ .beGreaterThanOrEqualTo(4))
 ```
 
-#### shortcut
-
-Do not want to use `tu`
-
-```4d
-_:=tu
-_ .expect(1+1).to(_ .equal(2))
-```
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[code-shield]: https://img.shields.io/static/v1?label=language&message=4d&color=blue
+[code-top]: https://img.shields.io/github/languages/top/mesopelagique/expect.svg
+[code-size]: https://img.shields.io/github/languages/code-size/mesopelagique/expect.svg
+[code-url]: https://developer.4d.com/
+[release-shield]: https://img.shields.io/github/v/release/mesopelagique/expect
+[release-url]: https://github.com/mesopelagique/expect/releases/latest
+[license-shield]: https://img.shields.io/github/license/mesopelagique/expect
+[license-url]: LICENSE.md
