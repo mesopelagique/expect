@@ -1,3 +1,20 @@
 //%attributes = {"shared":true,"preemptive":"capable"}
+C_OBJECT:C1216($0)
 
-$0:=cs:C1710.Builder.new()  // TODO: make an unique instance
+If (cs:C1710.Predicate.builder=Null:C1517)
+	Use (cs:C1710.Predicate)
+		cs:C1710.Predicate.builder:=New shared object:C1526()
+		
+		cs:C1710.Predicate.builder["expect"]:=Formula:C1597(cs:C1710.Expect.new($1))
+		
+		$cols:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
+			"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";\
+			"beTruthy";"beTrue";"beFalsy";"beFalse";"beNull")
+		
+		For each ($predicate;$cols)
+			cs:C1710.Predicate.builder[$predicate]:=Formula:C1597(cs:C1710.Predicate.new($predicate;$1;$2))
+		End for each 
+		
+	End use 
+End if 
+$0:=cs:C1710.Predicate.builder

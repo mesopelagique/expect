@@ -1,7 +1,7 @@
 
 Class constructor
 	This:C1470.value:=$1
-	This:C1470.callBy:=Get call chain:C1662[2]  // or if from outside of components?
+	This:C1470.callBy:=Get call chain:C1662[1]  // or if from outside of components?
 	
 	  // static init
 	If (cs:C1710.Expect.verify=Null:C1517)
