@@ -14,6 +14,13 @@ _ = spec // shared method of component
 _ .expect(<actual>).to(_ .<predicate>(<expected>))
 ```
 
+or to inverse predicate
+
+```4d
+_ .expect(<actual>).notTo(_ .<predicate>(<expected>))
+_ .expect(<actual>).toNot(_ .<predicate>(<expected>))
+```
+
 With:
 
 - `actual`: result of your computations (in unit test, value to test)
