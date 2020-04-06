@@ -54,11 +54,11 @@ _ .expect(False:C215).to(_ .beFalse())
 
 _ .expect(True:C214).to(_ .beTruthy())
 _ .expect(New object("message";"Test";"success";True)).to(_ .beTruthy())
-_ .expect(New collection("message";"Test";"success";True)).to(_ .beTruthy())
+_ .expect(New collection("Test";True)).to(_ .beTruthy())
 
 _ .expect(False:C215).to(_ .beFalsy())
 _ .expect(New object("message";"Test";"success";False)).to(_ .beFalsy())
-_ .expect(New collection("message";"Test";"success";False)).to(_ .beFalsy())
+_ .expect(New collection("Test";False;5)).to(_ .beFalsy())
 ```
 
 #### Numeric comparaison
