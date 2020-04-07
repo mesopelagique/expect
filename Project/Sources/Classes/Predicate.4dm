@@ -434,7 +434,7 @@ Function raiseError
 									If (Not:C34($0.pass))
 										$0.message:="Expected to raise an error with message "+String:C10(This:C1470.value)+" but receive "+$aT_errors{1}
 									End if 
-								: (Value type:C1509(This:C1470.value)=Is real:K8:4))
+								: (Value type:C1509(This:C1470.value)=Is real:K8:4)
 									$0.pass:=(This:C1470.value=$aL_codes{1})
 									If (Not:C34($0.pass))
 										$0.message:="Expected to raise an error with code "+String:C10(This:C1470.value)+" but receive "+String:C10($aL_codes{1})
