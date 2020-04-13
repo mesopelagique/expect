@@ -4,6 +4,7 @@
 ![code-size][code-size]
 [![release][release-shield]][release-url]
 [![license][license-shield]][license-url]
+[![discord][discord-shield]][discord-url]
 
 Matchers component inspired by [RSpec expectations](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers)
 
@@ -165,3 +166,5 @@ _.expect($anInstance)).to(_.beAnInstanceOf(cs.MyClass))
 [release-url]: https://github.com/mesopelagique/expect/releases/latest
 [license-shield]: https://img.shields.io/github/license/mesopelagique/expect
 [license-url]: LICENSE.md
+[discord-shield]: https://img.shields.io/badge/chat-discord-7289DA?logo=discord&style=flat
+[discord-url]: https://discord.gg/dVTqZHr
