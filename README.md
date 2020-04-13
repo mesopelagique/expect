@@ -1,17 +1,20 @@
-# expect
-[![language][code-shield]][code-url]
-[![language-top][code-top]][code-url]
-![code-size][code-size]
-[![release][release-shield]][release-url]
-[![license][license-shield]][license-url]
-[![discord][discord-shield]][discord-url]
+﻿# expect
+[![language][code-shield]][code-url] [![language-top][code-top]][code-url] ![code-size][code-size] [![release][release-shield]][release-url] [![license][license-shield]][license-url] [![discord][discord-shield]][discord-url]
 
-Matchers component inspired by [RSpec expectations](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers)
+Behavior-driven development component inspired by [RSpec](https://relishapp.com/rspec)
 
-## Usage
+## Test description
+
+
+## Matchers
+
+Matchers are inspired by [RSpec built-in-matchers](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers)
 
 ```4d
-_ = spec // shared method of component
+_ = spec
+```
+
+```4d
 _.expect(<value>).to(_.<predicate>)
 ```
 
@@ -118,7 +121,7 @@ _.expect(New object("message";"Test";"success";False)).to(_.beFalsy())
 _.expect(New collection("Test";False;5)).to(_.beFalsy())
 ```
 
-#### Numeric comparaison
+#### Numeric comparison
 
 Compare your numeric result with other numerics
 
@@ -155,6 +158,8 @@ Check if your object is an instance of specific class
 ```4d
 _.expect($anInstance)).to(_.beAnInstanceOf(cs.MyClass))
 ```
+
+![Hey, What did you expect?](https://media1.tenor.com/images/da23a7ec6b59647157eb4227ac97ddd7/tenor.gif)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
