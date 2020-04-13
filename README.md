@@ -1,7 +1,7 @@
-﻿# expect
+# expect
 [![language][code-shield]][code-url] [![language-top][code-top]][code-url] ![code-size][code-size] [![release][release-shield]][release-url] [![license][license-shield]][license-url] [![discord][discord-shield]][discord-url]
 
-Behavior-driven development component inspired by [RSpec](https://relishapp.com/rspec)
+Behavior-driven development and test component inspired by [RSpec](https://relishapp.com/rspec)
 
 ## Usage
 
