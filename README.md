@@ -25,6 +25,7 @@ While (_.describe("A new Scanner"))
 	End while 
 	...
 ```
+If test failed, the message will be : `"A new Scanner for an empty string is at the end"`
 
 You can share some initialization code using `beforeEach` (resp. `afterEach`)
 
