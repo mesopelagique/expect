@@ -1,7 +1,21 @@
 ﻿{
+	"Classes": {
+		"classes": [
+			"Expect",
+			"Predicate",
+			"Spec"
+		]
+	},
 	"test": {
 		"methods": [
 			"test_expect"
+		]
+	},
+	"utils": {
+		"methods": [
+			"catchError",
+			"Compiler_Methods",
+			"Compiler_Variables"
 		]
 	},
 	"trash": {}

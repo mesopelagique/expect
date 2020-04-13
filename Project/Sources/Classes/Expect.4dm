@@ -1,17 +1,10 @@
 
 Class constructor
 	C_VARIANT:C1683($1)
+	C_OBJECT:C1216($2)
 	This:C1470.value:=$1
-	This:C1470.callBy:=Get call chain:C1662[1]  // or if from outside of components?
-	
-	  // static init
-	If (cs:C1710.Expect.verify=Null:C1517)
-		Use (cs:C1710.Expect)
-			If (cs:C1710.Expect.verify=Null:C1517)
-				cs:C1710.Expect.verify:=Formula:C1597(ASSERT:C1129(Bool:C1537(This:C1470.pass);String:C10(This:C1470.message)+"\n("+JSON Stringify:C1217(This:C1470.callBy)+")"))
-			End if 
-		End use 
-	End if 
+	This:C1470.spec:=$2
+	This:C1470.callBy:=Get call chain:C1662[2]  // or if from outside of components?
 	
 Function to
 	C_OBJECT:C1216($0;$result)
@@ -40,7 +33,7 @@ Function notTo
 	
 Function verify  // (_ pass: Bool, _ message: FailureMessage)
 	C_OBJECT:C1216($1)
-	cs:C1710.Expect.verify.call($1)
+	This:C1470.spec.verify.call(This:C1470.spec;$1)
 	
 Function enhanceMessage
 	C_OBJECT:C1216($1;$result)
