@@ -28,7 +28,9 @@ While (_.describe("A new Scanner"))
 ```
 If the test failed, the context message will be : `"A new Scanner for an empty string is at the end"`
 
-You can share some initialization code using `beforeEach` (resp. `afterEach`)
+#### Before and after hooks
+
+You can share some initialization code using `beforeEach` and do some cleaning using `afterEach`
 
 ```4d
 	...
