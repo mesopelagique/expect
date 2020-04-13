@@ -1,7 +1,7 @@
 # expect
 [![language][code-shield]][code-url] [![language-top][code-top]][code-url] ![code-size][code-size] [![release][release-shield]][release-url] [![license][license-shield]][license-url] [![discord][discord-shield]][discord-url]
 
-Behavior-driven development and test component inspired by [RSpec](https://relishapp.com/rspec)
+[Behavior-driven development](https://en.wikipedia.org/wiki/Behavior-driven_development) and [test](https://en.wikipedia.org/wiki/Test-driven_development) component inspired by [RSpec](https://relishapp.com/rspec)
 
 ## Usage
 
@@ -15,6 +15,7 @@ _ = spec // return a spec instance
 ### Test description
 
 You describe your test and the context using `_.describe`, and finally do your test using `_.it`
+
 ```4d
 While (_.describe("A new Scanner"))
 	While (_.describe("for an empty string"))
@@ -25,7 +26,7 @@ While (_.describe("A new Scanner"))
 	End while 
 	...
 ```
-If test failed, the message will be : `"A new Scanner for an empty string is at the end"`
+If the test failed, the message will be : `"A new Scanner for an empty string is at the end"`
 
 You can share some initialization code using `beforeEach` (resp. `afterEach`)
 
