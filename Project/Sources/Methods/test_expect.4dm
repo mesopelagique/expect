@@ -1,11 +1,15 @@
 //%attributes = {}
 _:=spec 
-Use (_)
-	_.expectRaising:=Formula:C1597(_.expect($1).to(_.raiseError()))
-End use 
 
-_.expect(1+1).to(_.equal(2))
-_.expectRaising(Formula:C1597(_.expect(1+1).to(_.equal(4);"bad test")))
+While (_.describe("when comparing number equality"))
+	While (_.it("must be ok if equal"))
+		_.expect(1+1).to(_.equal(2))
+		_.expect(1+1).to(_.beEqualTo(2))
+	End while 
+	While (_.it("must raise if not equal"))
+		_.expectRaising(Formula:C1597(_.expect(1+1).to(_.equal(4))))
+	End while 
+End while 
 
 _.expect("seahorse").to(_.contain("sea");"correct test")
 _.expectRaising(Formula:C1597(_.expect("seahorse").to(_.contain("seazz");"bad test")))
