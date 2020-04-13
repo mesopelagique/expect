@@ -3,16 +3,61 @@
 
 Behavior-driven development component inspired by [RSpec](https://relishapp.com/rspec)
 
-## Test description
+## Usage
 
-
-## Matchers
-
-Matchers are inspired by [RSpec built-in-matchers](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers)
+### Initialize instance
+At the beginning of test method
 
 ```4d
-_ = spec
+_ = spec // return a spec instance
 ```
+
+### Test description
+
+You describe your test and the context using `_.describe`, and finally do your test using `_.it`
+```4d
+While (_.describe("A new Scanner"))
+	While (_.describe("for an empty string"))
+		While (_.it("is at the end"))
+			_.scanner:=cs.Scanner.new("")
+			_.expect(_.scanner.eos()).to(_.beTrue()) // or ASSERT(_.scanner.eos();_.message())
+		End while 
+	End while 
+	...
+```
+
+You can share some initialization code using `beforeEach` (resp. `afterEach`)
+
+```4d
+	...
+	While (_.describe("for a non-empty string"))
+		
+		_.beforeEach(Formula(This.scanner:=cs.Scanner.new("a b c")))
+		
+		While (_.describe("scan"))
+			
+			While (_.describe("when the RegExp matches the entire string"))
+				While (_.it("returns the entire string"))
+					_.expect(_.scanner.scan("a b c")).to(_.beEqualTo(_.scanner.string))
+					_.expect(_.scanner.eos()).to(_.beTrue())
+				End while 
+			End while 
+						
+			While (_.describe("when the RegExp matches at index 0"))
+				While (_.it("returns the portion of the string that matched"))
+					_.expect(_.scanner.scan("a")).to(_.beEqualTo("a"))
+					_.expect(_.scanner.pos).to(_.beEqualTo(1))
+				End while 
+			End while 
+
+		End while // end scan
+	End while // for a non-empty for a non-empty
+End while // A new Scanner
+```
+
+### Matchers
+
+Matchers are heavily inspired by [RSpec built-in-matchers](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers)
 
 ```4d
 _.expect(<value>).to(_.<predicate>)
@@ -29,8 +74,6 @@ with:
 
 - `value`: result of your computations to check
 - `predicate`: a defined predicate such as `equal`, `contain`, etc...
-
-### Examples
 
 #### Equality 
 
@@ -158,6 +201,11 @@ Check if your object is an instance of specific class
 ```4d
 _.expect($anInstance)).to(_.beAnInstanceOf(cs.MyClass))
 ```
+
+## TODO
+
+- Custom error collection in _spec.verify Formula
+- ...
 
 ![Hey, What did you expect?](https://media1.tenor.com/images/da23a7ec6b59647157eb4227ac97ddd7/tenor.gif)
 
