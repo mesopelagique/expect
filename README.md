@@ -26,7 +26,7 @@ While (_.describe("A new Scanner"))
 	End while 
 	...
 ```
-If the test failed, the message will be : `"A new Scanner for an empty string is at the end"`
+If the test failed, the context message will be : `"A new Scanner for an empty string is at the end"`
 
 You can share some initialization code using `beforeEach` (resp. `afterEach`)
 
@@ -56,6 +56,8 @@ You can share some initialization code using `beforeEach` (resp. `afterEach`)
 	End while // for a non-empty for a non-empty
 End while // A new Scanner
 ```
+
+[Full example](https://github.com/mesopelagique/Mustache/blob/master/Project/Sources/Methods/test_scanner.4dm)
 
 ### Matchers
 
@@ -206,7 +208,7 @@ _.expect($anInstance)).to(_.beAnInstanceOf(cs.MyClass))
 
 ## TODO
 
-- Custom error collection in _spec.verify Formula
+- Custom errors collect (in _spec.verify Formula) to write to files or asserts
 - ...
 
 ![Hey, What did you expect?](https://media1.tenor.com/images/da23a7ec6b59647157eb4227ac97ddd7/tenor.gif)
