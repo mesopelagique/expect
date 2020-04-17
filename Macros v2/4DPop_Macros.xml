@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE macros SYSTEM "http://www.4d.com/dtd/2007/macros.dtd" >
+
+<macros>
+
+    <macro name="---" in_menu="true" type_ahead="false"><text/></macro>
+    <macro  name="spec describe 📝" in_menu="true" in_toolbar="true" type_ahead="true">
+        <text>While (_.describe("<caret/>"))
+
+                <selection/>
+End while</text>
+    </macro>
+
+    <macro  name="spec it ✅🚫" in_menu="true" in_toolbar="true" type_ahead="true">
+        <text>While (_.it("<caret/>"))
+
+                <selection/>
+End while</text>
+    </macro>
+
+    <macro  name="spec expect 🤔" in_menu="true" in_toolbar="true" type_ahead="true">
+        <text>_.expect(<selection/>).to(_.<caret/>)</text>
+    </macro>
+
+    <macro name="---" in_menu="true" type_ahead="false"><text/></macro>
+    <macro  name="spec run ▶️" in_menu="true" in_toolbar="true" type_ahead="true">
+        <text><method>macro_expect("run"; "<method_path/>")</method></text>
+    </macro>
+    <macro  name="spec open 📖" in_menu="true" in_toolbar="true" type_ahead="true">
+        <text><method>macro_expect("open"; "<method_path/>")</method></text>
+    </macro>
+    <macro  name="spec new 🆕" in_menu="true" in_toolbar="true" type_ahead="true">
+        <text><method>macro_expect("new"; "<method_path/>")</method></text>
+    </macro>
+</macros>
