@@ -3,14 +3,13 @@ Class constructor
 	This:C1470.descriptions:=New collection:C1472()
 	This:C1470.verify:=Formula:C1597(ASSERT:C1129(Bool:C1537($1.pass);String:C10(This:C1470.message())+"\n"+String:C10($1.message)+"\n("+JSON Stringify:C1217($1.callBy)+")"))
 	
-	C_COLLECTION:C1488($cols)
-	$cols:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
+	This:C1470.predicates:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
 		"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";"beCloseTo";\
 		"beTruthy";"beTrue";"beFalsy";"beFalse";"beNull";"beEmpty";"haveLength";"beginWith";"endWith";\
 		"beAnInstanceOf";"allPass";"containElementSatisfying";"raiseError")
 	
 	C_TEXT:C284($predicate)
-	For each ($predicate;$cols)
+	For each ($predicate;This:C1470.predicates)
 		This:C1470[$predicate]:=Formula:C1597(cs:C1710.Predicate.new($predicate;$1;$2))  // XXX limited to 2 parameters for the moment
 	End for each 
 	
