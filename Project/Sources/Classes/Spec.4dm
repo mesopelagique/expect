@@ -31,7 +31,7 @@ Function describe
 Function context  // alias describe
 	C_BOOLEAN:C305($0)
 	C_TEXT:C284($1)
-	$0:=This:C1470.context($1)
+	$0:=This:C1470.describe($1)
 	
 Function current
 	C_TEXT:C284($0)
