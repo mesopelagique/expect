@@ -2,13 +2,17 @@
 	"Classes": {
 		"classes": [
 			"Expect",
+			"Gherkin",
 			"Predicate",
 			"Spec"
 		]
 	},
 	"test": {
 		"methods": [
-			"test_expect"
+			"test_expect",
+			"test_gherkin",
+			"test_predicate",
+			"test_spec"
 		]
 	},
 	"utils": {

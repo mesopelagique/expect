@@ -1,7 +1,15 @@
 
 Class constructor
+	C_OBJECT:C1216($1;$options)
+	$options:=$1
+	If ($options=Null:C1517)
+		$options:=New object:C1471()
+	End if 
+	
 	This:C1470.descriptions:=New collection:C1472()
-	This:C1470.verify:=Formula:C1597(ASSERT:C1129(Bool:C1537($1.pass);String:C10(This:C1470.message())+"\n"+String:C10($1.message)+"\n("+JSON Stringify:C1217($1.callBy)+")"))
+	This:C1470.verify:=Formula:C1597(This:C1470.verifyAlertAndCollect($1))
+	
+	This:C1470.results:=New object:C1471()  // XXX if identique test name, could remove a previous result
 	
 	This:C1470.predicates:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
 		"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";"beCloseTo";\
@@ -14,6 +22,7 @@ Class constructor
 	End for each 
 	
 	This:C1470.expectRaising:=Formula:C1597(This:C1470.expect($1).to(This:C1470.raiseError()))
+	This:C1470.testPlans:=New collection:C1472()
 	
 	
 Function describe
@@ -47,6 +56,7 @@ Function it
 	$0:=This:C1470.describe($1)
 	
 	If ($0)
+		This:C1470.testPlans.push(This:C1470.message())
 		If (This:C1470._beforeEach#Null:C1517)
 			This:C1470._beforeEach.call(This:C1470)
 		End if 
@@ -90,4 +100,37 @@ Function expect
 	C_VARIANT:C1683($1)
 	C_OBJECT:C1216($0)
 	$0:=cs:C1710.Expect.new($1;This:C1470)
+	
+Function verifyAlertAndCollect
+	C_OBJECT:C1216($1)  // error
+	This:C1470.verifyCollect($1)
+	This:C1470.verifyAlert($1)
+	
+Function verifyAlert
+	C_OBJECT:C1216($1)  // error
+	ASSERT:C1129(Bool:C1537($1.pass);String:C10(This:C1470.message())+"\n"+String:C10($1.message)+"\n("+JSON Stringify:C1217($1.callBy)+")")
+	
+Function verifyCollect
+	C_OBJECT:C1216($1)  // error
+	This:C1470.results[This:C1470.message()]:=$1
+	
+Function generateDoc
+	C_OBJECT:C1216($0)
+	C_TEXT:C284($1;$output;$test)
+	
+	$folder:=Folder:C1567(fk database folder:K87:14;*).folder("Documentation").folder("Methods")
+	If (Not:C34($folder.exists))
+		$folder.create()
+	End if 
+	$0:=$folder.file($1+".md")
+	
+	$output:="#"+$1+"\n\n"
+	$output:=$output+"|Test|Result|\n"
+	$output:=$output+"|---|---|\n"
+	For each ($test;This:C1470.testPlans)
+		$output:=$output+"|"+$test+"|"+Choose:C955(This:C1470.results[$test].pass;"✅";"❌")+"|\n"
+	End for each 
+	
+	$0.setText($output)
+	
 	

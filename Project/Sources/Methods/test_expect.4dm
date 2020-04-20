@@ -1,7 +1,7 @@
 //%attributes = {}
 _:=spec 
 
-While (_.describe("when comparing number equality"))
+While (_.describe("When comparing number equality"))
 	While (_.it("must be ok if equal"))
 		_.expect(1+1).to(_.equal(2))
 		_.expect(1+1).to(_.beEqualTo(2))
@@ -26,10 +26,21 @@ _.expect(New object:C1471()).to(_.beEmpty())
 _.expect(New object:C1471("key";"value")).toNot(_.beEmpty())
 _.expectRaising(Formula:C1597(_.expect(New object:C1471("key";"value")).to(_.beEmpty())))
 
-_.expect("seahorse").to(_.beginWith("sea"))
-_.expect("seahorse").toNot(_.beginWith("horse"))
-_.expect("seahorse").to(_.endWith("horse"))
-_.expect("seahorse").toNot(_.endWith("endWith"))
+
+While (_.describe("When comparing string -fix"))
+	While (_.it("seahorse must begin with sea"))
+		_.expect("seahorse").to(_.beginWith("sea"))
+	End while 
+	While (_.it("seahorse must not begin with horse"))
+		_.expect("seahorse").toNot(_.beginWith("horse"))
+	End while 
+	While (_.it("seahorse must end with horse"))
+		_.expect("seahorse").to(_.endWith("horse"))
+	End while 
+	While (_.it("seahorse must not end with sea"))
+		_.expect("seahorse").toNot(_.endWith("sea"))
+	End while 
+End while 
 
 _.expect(New collection:C1472("sea";"horse";"seahorse")).to(_.beginWith("sea"))
 _.expect(New collection:C1472()).toNot(_.beginWith("sea"))
@@ -108,3 +119,8 @@ _.expect(Formula:C1597(Application version:C493())).to(_.raiseError(59))
 _.expect(Formula:C1597(Application version:C493())).toNot(_.raiseError(100))
 _.expectRaising(Formula:C1597(_.expect(Formula:C1597(Application version:C493)).to(_.raiseError())))
 _.expectRaising(Formula:C1597(_.expect(Formula:C1597(Application version:C493())).to(_.raiseError(100))))
+
+_.generateDoc(Current method name:C684)
+
+
+
