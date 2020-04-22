@@ -117,14 +117,14 @@ Function verifyCollect
 Function generateDoc
 	C_OBJECT:C1216($0)
 	C_TEXT:C284($1;$output;$test)
-	
+	C_OBJECT:C1216($folder)
 	$folder:=Folder:C1567(fk database folder:K87:14;*).folder("Documentation").folder("Methods")
 	If (Not:C34($folder.exists))
 		$folder.create()
 	End if 
 	$0:=$folder.file($1+".md")
 	
-	$output:="#"+$1+"\n\n"
+	$output:="# "+$1+"\n\n"
 	$output:=$output+"|Test|Result|\n"
 	$output:=$output+"|---|---|\n"
 	For each ($test;This:C1470.testPlans)
@@ -133,4 +133,72 @@ Function generateDoc
 	
 	$0.setText($output)
 	
+Function junitReport
+	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
+	C_TEXT:C284($output;$test;$suitename)
 	
+	Case of 
+		: (Value type:C1509($1)=Is object:K8:27)
+			$0:=$1
+			$suitename:=$1.name
+		: (Value type:C1509($1)=Is text:K8:3)
+			C_OBJECT:C1216($folder)
+			$folder:=Folder:C1567(fk database folder:K87:14;*).folder("Tests")
+			If (Not:C34($folder.exists))
+				$folder.create()
+			End if 
+			$0:=$folder.file($1+".xml")
+			$suitename:=$1
+	End case 
+	
+	$output:="<testsuite tests=\""+String:C10(This:C1470.testPlans.length)+"\">\n"
+	For each ($test;This:C1470.testPlans)
+		$output:=$output+"\t<testcase classname=\""+$suitename+"\" name=\""+$test+"\""
+		If (This:C1470.results[$test].pass)
+			$output:=$output+"/>\n"
+		Else 
+			$output:=$output+">\n"
+			$output:=$output+"\t\t<failure>"+JSON Stringify:C1217(This:C1470.results[$test].callBy)+"</failure>\n"
+			$output:=$output+"\t\t<error>"+String:C10(This:C1470.results[$test].message)+"</error>\n"
+			$output:=$output+"</testcase>\n"
+		End if 
+	End for each 
+	$output:=$output+"</testsuite>"
+	
+	$0.setText($output)
+	
+Function teamcityReport
+	C_OBJECT:C1216($0)
+	C_VARIANT:C1683($1)
+	C_TEXT:C284($output;$test;$suitename)
+	
+	Case of 
+		: (Value type:C1509($1)=Is object:K8:27)
+			$0:=$1
+			$suitename:=$1.name
+		: (Value type:C1509($1)=Is text:K8:3)
+			C_OBJECT:C1216($folder)
+			$folder:=Folder:C1567(fk database folder:K87:14;*).folder("Tests")
+			If (Not:C34($folder.exists))
+				$folder.create()
+			End if 
+			$0:=$folder.file($1+".txt")
+			$suitename:=$1
+	End case 
+	
+	$output:="##teamcity[testSuiteStarted name='"+$suitename+"']\n"
+	For each ($test;This:C1470.testPlans)
+		$output:=$output+"##teamcity[testStarted name='"+This:C1470.teamcityEscape($test)+"']\n"
+		If (Not:C34(This:C1470.results[$test].pass))
+			$output:=$output+"##teamcity[testFailed message='"+This:C1470.teamcityEscape(String:C10(This:C1470.results[$test].message))+"' details='"+This:C1470.teamcityEscape(JSON Stringify:C1217(This:C1470.results[$test].callBy))+"']\n"
+		End if 
+		$output:=$output+"##teamcity[testFinished name='"+This:C1470.teamcityEscape($test)+"']\n"
+	End for each 
+	$output:=$output+"##teamcity[testSuiteFinished name='"+$suitename+"']\n"
+	
+	$0.setText($output)
+	
+Function teamcityEscape
+	C_TEXT:C284($0;$1)
+	$0:=Replace string:C233($1;"'";"''")  // XXX escape other string?
