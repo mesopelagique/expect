@@ -121,6 +121,8 @@ _.expectRaising(Formula:C1597(_.expect(Formula:C1597(Application version:C493)).
 _.expectRaising(Formula:C1597(_.expect(Formula:C1597(Application version:C493())).to(_.raiseError(100))))
 
 _.generateDoc(Current method name:C684)
+_.junitReport(Current method name:C684)
+_.teamcityReport(Current method name:C684)
 
 
 
