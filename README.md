@@ -208,6 +208,50 @@ Check if your object is an instance of specific class
 _.expect($anInstance)).to(_.beAnInstanceOf(cs.MyClass))
 ```
 
+## Measure / Time
+
+Want to execute a block of code multiple time and measure time?
+
+```4d
+$m:=_.measure(5)
+
+While ($m.next())
+  // here your block fo code
+End while
+```
+
+then you could get the average duration
+
+```4d
+$m.durationAverage()
+```
+or all durations as collection
+
+```4d
+$m.durations()
+```
+
+You could check the min or max or compute the variance to warn if there is too much difference between each execution
+
+### Delay timer
+
+Some times you need to initialize some stuff and do not want to measure it, only one part of the code block. You could delay the timer and launch the measure yourself by setting `automaticallyStartMeasuring` to false and use `start` and `stop` functions.
+
+```4d
+$m:=_.measure(10)
+$m.automaticallyStartMeasuring:=False
+While ($m.hasNext())
+	
+     // do init stuff here
+
+	$m.start()
+	// code to measure time
+	$m.stop()
+	
+	$m.next()
+End while 
+```
+
 ## TODO
 
 - Custom errors collect (in _spec.verify Formula) to write to files or asserts
