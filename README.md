@@ -210,7 +210,7 @@ _.expect($anInstance)).to(_.beAnInstanceOf(cs.MyClass))
 
 ## Measure / Time
 
-Want to execute a block of code multiple time and measure time?
+Want to execute a block of code multiple times and measure the time?
 
 ```4d
 $m:=_.measure(5)
@@ -225,6 +225,7 @@ then you could get the average duration
 ```4d
 $m.durationAverage()
 ```
+
 or all durations as collection
 
 ```4d
@@ -235,7 +236,8 @@ You could check the min or max or compute the variance to warn if there is too m
 
 ### Delay timer
 
-Some times you need to initialize some stuff and do not want to measure it, only one part of the code block. You could delay the timer and launch the measure yourself by setting `automaticallyStartMeasuring` to false and use `start` and `stop` functions.
+Some times you need to initialize some stuff and do not want to take into account in the measure.
+You could delay the timer and launch the measure yourself by setting `automaticallyStartMeasuring` to `False` and use `start` and `stop` functions.
 
 ```4d
 $m:=_.measure(10)
