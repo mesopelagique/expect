@@ -1,6 +1,6 @@
 
 Class constructor
-	C_OBJECT:C1216($1;$options)
+	C_OBJECT:C1216($1; $options)
 	$options:=$1
 	If ($options=Null:C1517)
 		$options:=New object:C1471()
@@ -11,14 +11,14 @@ Class constructor
 	
 	This:C1470.results:=New object:C1471()  // XXX if identique test name, could remove a previous result
 	
-	This:C1470.predicates:=New collection:C1472("beEqualTo";"equal";"beCloseTo";"contain";\
-		"beLessThan";"beLessThanOrEqualTo";"beGreaterThan";"beGreaterThanOrEqualTo";"beCloseTo";\
-		"beTruthy";"beTrue";"beFalsy";"beFalse";"beNull";"beEmpty";"haveLength";"beginWith";"endWith";\
-		"beAnInstanceOf";"allPass";"containElementSatisfying";"raiseError")
+	This:C1470.predicates:=New collection:C1472("beEqualTo"; "equal"; "beCloseTo"; "contain"; \
+		"beLessThan"; "beLessThanOrEqualTo"; "beGreaterThan"; "beGreaterThanOrEqualTo"; "beCloseTo"; \
+		"beTruthy"; "beTrue"; "beFalsy"; "beFalse"; "beNull"; "beEmpty"; "haveLength"; "beginWith"; "endWith"; \
+		"beAnInstanceOf"; "allPass"; "containElementSatisfying"; "raiseError")
 	
 	C_TEXT:C284($predicate)
-	For each ($predicate;This:C1470.predicates)
-		This:C1470[$predicate]:=Formula:C1597(cs:C1710.Predicate.new($predicate;$1;$2))  // XXX limited to 2 parameters for the moment
+	For each ($predicate; This:C1470.predicates)
+		This:C1470[$predicate]:=Formula:C1597(cs:C1710.Predicate.new($predicate; $1; $2))  // XXX limited to 2 parameters for the moment
 	End for each 
 	
 	This:C1470.expectRaising:=Formula:C1597(This:C1470.expect($1).to(This:C1470.raiseError()))
@@ -69,7 +69,7 @@ Function it
 Function end
 	C_TEXT:C284($value)
 	$value:=This:C1470.descriptions.pop()
-	  // clean before/each
+	// clean before/each
 	If (String:C10(This:C1470._beforeEachContext)=$value)
 		This:C1470._beforeEachContext:=Null:C1517
 		This:C1470._beforeEach:=Null:C1517
@@ -94,12 +94,12 @@ Function message
 	$0:=This:C1470.descriptions.join(" ")
 	
 Function check
-	ASSERT:C1129(This:C1470.descriptions.length=0;"There is some describe or it without and")
+	ASSERT:C1129(This:C1470.descriptions.length=0; "There is some describe or it without and")
 	
 Function expect
 	C_VARIANT:C1683($1)
 	C_OBJECT:C1216($0)
-	$0:=cs:C1710.Expect.new($1;This:C1470)
+	$0:=cs:C1710.Expect.new($1; This:C1470)
 	
 Function verifyAlertAndCollect
 	C_OBJECT:C1216($1)  // error
@@ -108,7 +108,7 @@ Function verifyAlertAndCollect
 	
 Function verifyAlert
 	C_OBJECT:C1216($1)  // error
-	ASSERT:C1129(Bool:C1537($1.pass);String:C10(This:C1470.message())+"\n"+String:C10($1.message)+"\n("+JSON Stringify:C1217($1.callBy)+")")
+	ASSERT:C1129(Bool:C1537($1.pass); String:C10(This:C1470.message())+"\n"+String:C10($1.message)+"\n("+JSON Stringify:C1217($1.callBy)+")")
 	
 Function verifyCollect
 	C_OBJECT:C1216($1)  // error
@@ -116,9 +116,9 @@ Function verifyCollect
 	
 Function generateDoc
 	C_OBJECT:C1216($0)
-	C_TEXT:C284($1;$output;$test)
+	C_TEXT:C284($1; $output; $test)
 	C_OBJECT:C1216($folder)
-	$folder:=Folder:C1567(fk database folder:K87:14;*).folder("Documentation").folder("Methods")
+	$folder:=Folder:C1567(fk database folder:K87:14; *).folder("Documentation").folder("Methods")
 	If (Not:C34($folder.exists))
 		$folder.create()
 	End if 
@@ -127,8 +127,8 @@ Function generateDoc
 	$output:="# "+$1+"\n\n"
 	$output:=$output+"|Test|Result|\n"
 	$output:=$output+"|---|---|\n"
-	For each ($test;This:C1470.testPlans)
-		$output:=$output+"|"+$test+"|"+Choose:C955(This:C1470.results[$test].pass;"✅";"❌")+"|\n"
+	For each ($test; This:C1470.testPlans)
+		$output:=$output+"|"+$test+"|"+Choose:C955(This:C1470.results[$test].pass; "✅"; "❌")+"|\n"
 	End for each 
 	
 	$0.setText($output)
@@ -136,7 +136,7 @@ Function generateDoc
 Function junitReport
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)
-	C_TEXT:C284($output;$test;$suitename)
+	C_TEXT:C284($output; $test; $suitename)
 	
 	Case of 
 		: (Value type:C1509($1)=Is object:K8:27)
@@ -144,7 +144,7 @@ Function junitReport
 			$suitename:=$1.name
 		: (Value type:C1509($1)=Is text:K8:3)
 			C_OBJECT:C1216($folder)
-			$folder:=Folder:C1567(fk database folder:K87:14;*).folder("Tests")
+			$folder:=Folder:C1567(fk database folder:K87:14; *).folder("Tests")
 			If (Not:C34($folder.exists))
 				$folder.create()
 			End if 
@@ -153,7 +153,7 @@ Function junitReport
 	End case 
 	
 	$output:="<testsuite tests=\""+String:C10(This:C1470.testPlans.length)+"\">\n"
-	For each ($test;This:C1470.testPlans)
+	For each ($test; This:C1470.testPlans)
 		$output:=$output+"\t<testcase classname=\""+$suitename+"\" name=\""+$test+"\""
 		If (This:C1470.results[$test].pass)
 			$output:=$output+"/>\n"
@@ -171,7 +171,7 @@ Function junitReport
 Function teamcityReport
 	C_OBJECT:C1216($0)
 	C_VARIANT:C1683($1)
-	C_TEXT:C284($output;$test;$suitename)
+	C_TEXT:C284($output; $test; $suitename)
 	
 	Case of 
 		: (Value type:C1509($1)=Is object:K8:27)
@@ -179,7 +179,7 @@ Function teamcityReport
 			$suitename:=$1.name
 		: (Value type:C1509($1)=Is text:K8:3)
 			C_OBJECT:C1216($folder)
-			$folder:=Folder:C1567(fk database folder:K87:14;*).folder("Tests")
+			$folder:=Folder:C1567(fk database folder:K87:14; *).folder("Tests")
 			If (Not:C34($folder.exists))
 				$folder.create()
 			End if 
@@ -188,7 +188,7 @@ Function teamcityReport
 	End case 
 	
 	$output:="##teamcity[testSuiteStarted name='"+$suitename+"']\n"
-	For each ($test;This:C1470.testPlans)
+	For each ($test; This:C1470.testPlans)
 		$output:=$output+"##teamcity[testStarted name='"+This:C1470.teamcityEscape($test)+"']\n"
 		If (Not:C34(This:C1470.results[$test].pass))
 			$output:=$output+"##teamcity[testFailed message='"+This:C1470.teamcityEscape(String:C10(This:C1470.results[$test].message))+"' details='"+This:C1470.teamcityEscape(JSON Stringify:C1217(This:C1470.results[$test].callBy))+"']\n"
@@ -200,5 +200,11 @@ Function teamcityReport
 	$0.setText($output)
 	
 Function teamcityEscape
-	C_TEXT:C284($0;$1)
-	$0:=Replace string:C233($1;"'";"''")  // XXX escape other string?
+	C_TEXT:C284($0; $1)
+	$0:=Replace string:C233($1; "'"; "''")  // XXX escape other string?
+	
+/* Return a measure block */
+Function measure
+	C_LONGINT:C283($1)
+	C_OBJECT:C1216($0)
+	$0:=cs:C1710.Measure.new($1)

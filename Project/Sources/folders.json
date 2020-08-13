@@ -3,14 +3,17 @@
 		"classes": [
 			"Expect",
 			"Gherkin",
+			"Measure",
 			"Predicate",
-			"Spec"
+			"Spec",
+			"Timer"
 		]
 	},
 	"test": {
 		"methods": [
 			"test_expect",
 			"test_gherkin",
+			"test_measure",
 			"test_predicate",
 			"test_spec"
 		]
