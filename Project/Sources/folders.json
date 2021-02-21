@@ -9,9 +9,38 @@
 			"Timer"
 		]
 	},
+	"shortcut": {
+		"methods": [
+			"_generatepredicatedmethods",
+			"allPass",
+			"beAnInstanceOf",
+			"beCloseTo",
+			"beEmpty",
+			"beEqualTo",
+			"beFalse",
+			"beFalsy",
+			"beginWith",
+			"beGreaterThan",
+			"beGreaterThanOrEqualTo",
+			"beLessThan",
+			"beLessThanOrEqualTo",
+			"beNull",
+			"beTrue",
+			"beTruthy",
+			"contain",
+			"containElementSatisfying",
+			"endWith",
+			"equal",
+			"expect",
+			"expectRaising",
+			"haveLength",
+			"raiseError"
+		]
+	},
 	"test": {
 		"methods": [
 			"test_expect",
+			"test_expect_method",
 			"test_gherkin",
 			"test_measure",
 			"test_predicate",

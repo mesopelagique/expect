@@ -1,0 +1,1 @@
+﻿//%attributes = {"shared":true}#DECLARE($value : Variant)->$expectation : cs.Predicate$expectation:=cs.Predicate.new(Current method name; $value)
